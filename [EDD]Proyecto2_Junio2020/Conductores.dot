@@ -1,0 +1,23 @@
+digraph D {
+rankdir=LR
+node [fontname="Arial"];
+
+"1(Nombre1)"->"3(Nombre3)";
+"3(Nombre3)"->"1(Nombre1)";
+"3(Nombre3)"->"4(Nombre4)";
+"4(Nombre4)"->"3(Nombre3)";
+"4(Nombre4)"->"6(Nombre6)";
+"6(Nombre6)"->"4(Nombre4)";
+"6(Nombre6)"->"7(Nombre7)";
+"7(Nombre7)"->"6(Nombre6)";
+"7(Nombre7)"->"55(Nombre5)";
+"55(Nombre5)"->"7(Nombre7)";
+"55(Nombre5)"->"295(Nombre2)";
+"295(Nombre2)"->"55(Nombre5)";
+"295(Nombre2)"->"887(Nombre8)";
+"887(Nombre8)"->"295(Nombre2)";
+"1(Nombre1)"->"887(Nombre8)";
+"887(Nombre8)"->"1(Nombre1)";
+{rank=same;"1(Nombre1)";"3(Nombre3)";"4(Nombre4)";"6(Nombre6)";"7(Nombre7)";"55(Nombre5)";"295(Nombre2)";"887(Nombre8)";};
+
+}
