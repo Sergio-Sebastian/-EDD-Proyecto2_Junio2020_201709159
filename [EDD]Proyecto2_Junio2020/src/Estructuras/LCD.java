@@ -134,6 +134,8 @@ public class LCD {
                 }
             }
         }
+        Cabeza.Anterior = Cola;
+        Cola.Siguiente = Cabeza;
     }
     public void CargaMasiva() {
         File documento;
