@@ -1,0 +1,11 @@
+digraph G {
+"Oviedo"->"Bilbao"[label=304];
+"Bilbao"->"Zaragosa"[label=324];
+"Bilbao"->"Madrid"[label=324];
+"Bilbao"->"Valladolid"[label=395];
+"Zaragosa"->"Barcelona"[label=296];
+"Zaragosa"->"Madrid"[label=296];
+"Barcelona"->"Gerona"[label=100];
+"Gerona"->"Oviedo"[label=500];
+
+}

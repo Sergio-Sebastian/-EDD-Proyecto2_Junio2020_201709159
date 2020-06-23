@@ -161,16 +161,14 @@ public class LCD {
             JOptionPane.showMessageDialog(null, "Error");
         }
         carga = texto.split(";");
-        matriz1 = new String[carga.length][5];
+        matriz1 = new String[carga.length][8];
         for (int i = 0; i < carga.length; i++) {
             matriz1[i] = carga[i].split("%");
-            /*if(ManejoProducto.getInstancia().getProductos().existeProducto(matriz1[i][0])){
-                    System.out.println("El producto ya existe");
-                }else{
-                    ManejoProducto.getInstancia().getProductos().addProducto(matriz1[i][0],matriz1[i][1],Double.parseDouble(matriz1[i][2]),Integer.parseInt(matriz1[i][3]),matriz1[i][4]);
-                }*/
-            InsertarOrden(matriz1[i][0], matriz1[i][1], matriz1[i][2], matriz1[i][3], matriz1[i][4], matriz1[i][5], matriz1[i][6], matriz1[i][7]);
-
+            if(BuscarNodo(matriz1[i][0]) == null){
+                InsertarOrden(matriz1[i][0], matriz1[i][1], matriz1[i][2], matriz1[i][3], matriz1[i][4], matriz1[i][5], matriz1[i][6], matriz1[i][7]);
+            }else{
+                System.out.println("El conductor ya existe");
+            }
         }
         JOptionPane.showMessageDialog(null, "Carga Completa");
     }

@@ -1,0 +1,16 @@
+digraph D {
+rankdir=LR
+node[shape=rectangle]
+nodesep=0;
+
+"Oviedo"->"Bilbao(304)";
+"Oviedo"->"Bilbao"[style=invis];"Bilbao"->"Zaragosa(324)";
+"Zaragosa(324)"->"Madrid(395)";
+"Madrid(395)"->"Valladolid(280)";
+"Bilbao"->"Zaragosa"[style=invis];"Zaragosa"->"Barcelona(296)";
+"Barcelona(296)"->"Madrid(325)";
+"Zaragosa"->"Barcelona"[style=invis];"Barcelona"->"Gerona(100)";
+"Barcelona"->"Gerona"[style=invis];"Gerona"->"Oviedo(500)";
+{rank=same;"Oviedo";"Bilbao";"Bilbao";"Zaragosa";"Zaragosa";"Barcelona";"Barcelona";"Gerona";"Gerona";}
+
+}
