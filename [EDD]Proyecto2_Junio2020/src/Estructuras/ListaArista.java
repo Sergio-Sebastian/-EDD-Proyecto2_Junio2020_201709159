@@ -66,7 +66,7 @@ public class ListaArista {
     public NodoArista BuscarArista(String origen, String destino, int tiempo){
         NodoArista aux = Cabeza;
         while(aux != null){
-            if(aux.Origen ==  origen && aux.Destino ==  destino && aux.Tiempo ==  tiempo){
+            if(aux.Origen.equals(origen) && aux.Destino.equals(destino) && aux.Tiempo == tiempo){
                 return aux;
             }
             aux = aux.Siguiente;

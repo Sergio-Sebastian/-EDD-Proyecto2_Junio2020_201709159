@@ -9,8 +9,8 @@ nodesep=0;
 "Madrid(395)"->"Valladolid(280)";
 "Bilbao"->"Zaragosa"[style=invis];"Zaragosa"->"Barcelona(296)";
 "Barcelona(296)"->"Madrid(325)";
-"Zaragosa"->"Barcelona"[style=invis];"Barcelona"->"Gerona(100)";
+"Zaragosa"->"Madrid"[style=invis];"Madrid"->"Valladolid"[style=invis];"Valladolid"->"Barcelona"[style=invis];"Barcelona"->"Gerona(100)";
 "Barcelona"->"Gerona"[style=invis];"Gerona"->"Oviedo(500)";
-{rank=same;"Oviedo";"Bilbao";"Bilbao";"Zaragosa";"Zaragosa";"Barcelona";"Barcelona";"Gerona";"Gerona";}
+{rank=same;"Oviedo";"Bilbao";"Bilbao";"Zaragosa";"Zaragosa";"Madrid";"Valladolid";"Barcelona";"Barcelona";"Gerona";"Gerona";}
 
 }
