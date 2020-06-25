@@ -1,0 +1,9 @@
+digraph D {
+node[shape=rectangle]
+
+"Oviedo(0)"->"Bilbao(304)";
+"Bilbao(304)"->"Madrid(699)";
+"Madrid(699)"
+{rank=same;"Oviedo(0)""Bilbao(304)""Madrid(699)"}
+
+}

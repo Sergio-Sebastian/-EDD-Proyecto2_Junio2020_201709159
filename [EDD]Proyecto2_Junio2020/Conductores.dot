@@ -1,6 +1,42 @@
 digraph D {
-rankdir=LR
 node [fontname="Arial"];
 
-"Oviedo"->"Bilbao(304)";{rank=same;"Oviedo";"Bilbao(304)";}"Oviedo"->"Bilbao";"Bilbao"->"Zaragoza(324)";"Zaragoza(324)"->"Madrid(395)";"Madrid(395)"->"Valladolid(280)";{rank=same;"Bilbao";"Zaragoza(324)";"Madrid(395)";"Valladolid(280)";}"Bilbao"->"Zaragosa";"Zaragosa"->"Barcelona(296)";"Barcelona(296)"->"Madrid(325)";{rank=same;"Zaragosa";"Barcelona(296)";"Madrid(325)";}"Zaragosa"->"Barcelona";"Barcelona"->"Gerona(100)";{rank=same;"Barcelona";"Gerona(100)";}
+"1(Nombre1)"->"31(Nombre3)";
+"31(Nombre3)"->"1(Nombre1)";
+"31(Nombre3)"->"48(Nombre4)";
+"48(Nombre4)"->"31(Nombre3)";
+"48(Nombre4)"->"55(Nombre5)";
+"55(Nombre5)"->"48(Nombre4)";
+"55(Nombre5)"->"295(Nombre2)";
+"295(Nombre2)"->"55(Nombre5)";
+"295(Nombre2)"->"445(Nombre4)";
+"445(Nombre4)"->"295(Nombre2)";
+"445(Nombre4)"->"654(Nombre6)";
+"654(Nombre6)"->"445(Nombre4)";
+"654(Nombre6)"->"656(Nombre6)";
+"656(Nombre6)"->"654(Nombre6)";
+"656(Nombre6)"->"887(Nombre8)";
+"887(Nombre8)"->"656(Nombre6)";
+"887(Nombre8)"->"5578(Nombre5)";
+"5578(Nombre5)"->"887(Nombre8)";
+"5578(Nombre5)"->"9000(Nombre3)";
+"9000(Nombre3)"->"5578(Nombre5)";
+"9000(Nombre3)"->"1005957733221(Rolando)";
+"1005957733221(Rolando)"->"9000(Nombre3)";
+"1005957733221(Rolando)"->"3005952367401(Pedro)";
+"3005952367401(Pedro)"->"1005957733221(Rolando)";
+"3005952367401(Pedro)"->"3033988367401(Fernanda)";
+"3033988367401(Fernanda)"->"3005952367401(Pedro)";
+"3033988367401(Fernanda)"->"4005952367401(Maria)";
+"4005952367401(Maria)"->"3033988367401(Fernanda)";
+"4005952367401(Maria)"->"5004153267401(Mario)";
+"5004153267401(Mario)"->"4005952367401(Maria)";
+"5004153267401(Mario)"->"7805544360001(Luis)";
+"7805544360001(Luis)"->"5004153267401(Mario)";
+"7805544360001(Luis)"->"9805952367756(Virginia)";
+"9805952367756(Virginia)"->"7805544360001(Luis)";
+"1(Nombre1)"->"9805952367756(Virginia)";
+"9805952367756(Virginia)"->"1(Nombre1)";
+{rank=same;"1(Nombre1)";"31(Nombre3)";"48(Nombre4)";"55(Nombre5)";"295(Nombre2)";"445(Nombre4)";"654(Nombre6)";"656(Nombre6)";"887(Nombre8)";"5578(Nombre5)";"9000(Nombre3)";"1005957733221(Rolando)";"3005952367401(Pedro)";"3033988367401(Fernanda)";"4005952367401(Maria)";"5004153267401(Mario)";"7805544360001(Luis)";"9805952367756(Virginia)";};
+
 }

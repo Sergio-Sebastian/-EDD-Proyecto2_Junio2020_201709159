@@ -5,28 +5,26 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class ListaVertice {
-
+    private int cont = 0;
     public NodoVertice Cabeza;
-
     public ListaVertice() {
         Cabeza = null;
     }
-
     //**********************************************GET*****************************************
     public NodoVertice getCabeza() {
         return Cabeza;
     }
-
     //**********************************************SET*****************************************
     public void setCabeza(NodoVertice Cabeza) {
         this.Cabeza = Cabeza;
     }
-
     //*********************************************************METODOS**********************************************
     public void Insertar(String origen, String destino, int tiempo) {
         NodoVertice nuevo = new NodoVertice(origen);
@@ -42,6 +40,8 @@ public class ListaVertice {
             if(ver2 == null){
                 while(aux != null){
                     if(aux.Abajo == null){
+                        cont++;
+                        nuevo2.matriz += cont;
                         aux.Abajo = nuevo2;
                         return;
                     }
@@ -49,19 +49,27 @@ public class ListaVertice {
                 }
             }
         } else if (Cabeza == null) {
+            cont++;
             nuevo.Aristas.InsertarFin(origen, destino, tiempo);
+            nuevo.matriz += cont;
             Cabeza = nuevo;
             if(nuevo.Nombre.equals(nuevo2.Nombre)){
                 
             }else{
+                cont++;
+                nuevo2.matriz += cont;
                 Cabeza.Abajo = nuevo2;
             }
         } else {
             while (aux != null) {
                 if (aux.Abajo == null) {
+                    cont++;
                     nuevo.Aristas.InsertarFin(origen, destino, tiempo);
+                    nuevo.matriz += cont;
                     aux.Abajo = nuevo;
                     if(ver2 == null){
+                        cont++;
+                        nuevo2.matriz = cont;
                         aux.Abajo.Abajo = nuevo2;
                     }
                     return;
@@ -70,7 +78,6 @@ public class ListaVertice {
             }
         }
     }
-
     public void Recorrer() {
         NodoVertice aux = Cabeza;
         if (Cabeza != null) {
@@ -81,7 +88,6 @@ public class ListaVertice {
             }
         }
     }
-
     public NodoVertice BuscarVertice(String nombre) {
         NodoVertice aux = Cabeza;
         while (aux != null) {
@@ -92,7 +98,16 @@ public class ListaVertice {
         }
         return null;
     }
-
+    public NodoVertice BuscarVerticePorPosicion(int pos) {
+        NodoVertice aux = Cabeza;
+        while (aux != null) {
+            if (aux.matriz == pos) {
+                return aux;
+            }
+            aux = aux.Abajo;
+        }
+        return null;
+    }
     public void EliminarVertice(String nombre) {
         NodoVertice aux = Cabeza;
         if (aux != null) {
@@ -117,15 +132,13 @@ public class ListaVertice {
             }
         }
     }
-
     public void EliminarArista(String origen, String destino, int tiempo) {
         BuscarVertice(origen).Aristas.EliminarArista(origen, destino, tiempo);
         if (BuscarVertice(origen).Aristas.Cabeza == null) {
             EliminarVertice(origen);
         }
     }
-
-    public void CargaMasiva() {
+    public boolean CargaMasiva() {
         File documento;
         String direccion;
         String carga[];
@@ -147,6 +160,7 @@ public class ListaVertice {
             texto = contenido;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error");
+            return false;
         }
         carga = texto.split("%");
         matriz1 = new String[carga.length][3];
@@ -155,8 +169,8 @@ public class ListaVertice {
             Insertar(matriz1[i][0], matriz1[i][1], Integer.parseInt(matriz1[i][2]));
         }
         JOptionPane.showMessageDialog(null, "Carga Completa");
+        return true;
     }
-
     public void ReporteListaAdyacencia() {
         if (Cabeza != null) {
             NodoVertice base = Cabeza;
@@ -207,7 +221,6 @@ public class ListaVertice {
             }
         }
     }
-
     public void ReporteGrafo() {
         if (Cabeza != null) {
             NodoVertice base = Cabeza;
@@ -224,7 +237,7 @@ public class ListaVertice {
                     contenido += "\"" + inicio.Origen + "\"" + "->" + "\"" + inicio.Destino + "\"" + "[label=" + inicio.Tiempo + "]" + ";\n";
                     while (inicio != null) {
                         if (inicio.Siguiente != null) {
-                            contenido += "\"" + inicio.Siguiente.Origen + "\"" + "->" + "\"" + inicio.Siguiente.Destino + "\"" + "[label=" + inicio.Tiempo + "]" + ";\n";
+                            contenido += "\"" + inicio.Siguiente.Origen + "\"" + "->" + "\"" + inicio.Siguiente.Destino + "\"" + "[label=" + inicio.Siguiente.Tiempo + "]" + ";\n";
                         }
                         inicio = inicio.Siguiente;
                     }
@@ -247,5 +260,92 @@ public class ListaVertice {
                 System.err.println("");
             }
         }
+    }
+    public int[][] CrearMatrizAdyacencia(int tamanyo){
+        int MatrizAdyacencia[][] = new int[tamanyo][tamanyo];
+        NodoVertice base = Cabeza;
+        NodoArista aux;
+        NodoVertice buscarpos;
+        while(base != null){
+            if(base.Aristas.Cabeza != null){
+                aux = base.Aristas.Cabeza;
+                while(aux != null){
+                    buscarpos = BuscarVertice(aux.Destino);
+                    if(buscarpos != null){
+                        MatrizAdyacencia[base.matriz][buscarpos.matriz] = aux.Tiempo;
+                    }
+                    aux = aux.Siguiente;
+                }
+                base = base.Abajo;
+            }else{
+                base = base.Abajo;
+            }
+        }
+        return MatrizAdyacencia;
+    }
+    public ListaArista CaminoCorto(String origen, String destino){
+        int[][] MatrizPesos = CrearMatrizAdyacencia(cont);
+        ListaArista lista = new ListaArista();
+        NodoArista nuevo;
+        NodoVertice existe;
+        int [][] datos = new int[cont][3];
+        for(int i=0; i<cont; i++){
+            datos[i][0]=0;
+            datos[i][1]= Integer.MAX_VALUE;
+            datos[i][0]=0;
+        }
+        NodoVertice inicio = BuscarVertice(origen);
+        int start;
+        if(inicio != null){
+            start = inicio.matriz;
+        }else{
+            return null;
+        }
+        datos[start][1]=0;
+        int actual = start;
+        do{
+            datos[actual][0]=1;
+            for(int col = 0; col < cont; col++){
+                if(MatrizPesos[actual][col]!=0){
+                    int distancia = MatrizPesos[actual][col] + datos[actual][1];
+                    if(distancia<datos[col][1]){
+                        datos[col][1] = distancia;
+                        datos[col][2] = actual;
+                    }                  
+                }
+            }
+            int distmin = Integer.MAX_VALUE;
+            int indmin =-1;
+            for(int x =0; x<cont; x++){
+                if(datos[x][1]<distmin && datos[x][0]==0){
+                    indmin  = x;
+                    distmin = datos[x][1];
+                }
+            }
+            actual = indmin;
+        }while(actual!=-1);
+        ArrayList<Integer> ruta = new ArrayList<Integer>();
+        int nodo;
+        NodoVertice fin = BuscarVertice(destino);
+         if(fin != null){
+            nodo = fin.matriz;
+        }else{
+            return null;
+        }
+         while(nodo!= start){
+             ruta.add(nodo);
+             nodo = datos[nodo][2];
+         }
+         ruta.add(start);
+         Collections.reverse(ruta);
+         for (int pos : ruta) 
+        { 
+            existe = BuscarVerticePorPosicion(pos);
+            if(existe!=null){
+              nuevo = new NodoArista(existe.Nombre, datos[pos][1]); 
+              lista.InsertarFin(nuevo.Origen,nuevo.Destino,nuevo.Tiempo);
+            }
+        }
+         return lista;
     }
 }

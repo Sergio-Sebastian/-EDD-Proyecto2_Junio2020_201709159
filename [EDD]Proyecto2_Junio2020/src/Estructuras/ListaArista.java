@@ -1,5 +1,8 @@
 package Estructuras;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 public class ListaArista {
     public NodoArista Cabeza;
     public ListaArista() {
@@ -72,5 +75,44 @@ public class ListaArista {
             aux = aux.Siguiente;
         }
         return null;
+    }
+    public void ReporteGraphviz(){
+        if (Cabeza != null) {
+            NodoArista inicio = Cabeza;
+            String contenido = "";
+            String ranks = "{rank=same;";
+            FileWriter documento = null;
+            PrintWriter crear;
+            String archivo = "RutaCorta.dot";
+            String direccion = "RutaCorta.png";
+            //****************************************************************************************************CONTENIDO ARCHIVO
+            while (inicio != null) {
+                if(inicio.Siguiente != null){
+                    contenido += "\"" + inicio.Destino + "(" + inicio.Tiempo + ")" + "\"" + "->" + "\"" + inicio.Siguiente.Destino + "(" + inicio.Siguiente.Tiempo + ")" + "\"" + ";\n";
+                    ranks += "\"" + inicio.Destino + "(" + inicio.Tiempo + ")" + "\"";
+                }else{
+                    contenido += "\"" + inicio.Destino + "(" + inicio.Tiempo + ")" + "\"";
+                    ranks += "\"" + inicio.Destino + "(" + inicio.Tiempo + ")" + "\"";
+                }
+                inicio = inicio.Siguiente;
+            }
+            ranks += "}\n";
+            contenido += "\n" + ranks;
+            //****************************************************************************************************FIN CONTENIDO ARCHIVO
+            String comando = "digraph D {\n" + "node[shape=rectangle]\n" + "\n" + contenido + "\n}";
+            try {
+                documento = new FileWriter(archivo);
+                crear = new PrintWriter(documento);
+                crear.print(comando);
+                crear.close();
+            } catch (Exception e) {
+                System.out.println("Error");
+            }
+            try {
+                Runtime.getRuntime().exec("dot -Tpng " + archivo + " -o " + direccion);
+            } catch (Exception e) {
+                System.err.println("");
+            }
+        }
     }
 }

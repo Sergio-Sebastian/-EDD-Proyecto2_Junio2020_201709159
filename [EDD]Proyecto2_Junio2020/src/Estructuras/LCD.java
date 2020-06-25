@@ -17,24 +17,30 @@ public class LCD {
 
     public NodoLCD Cabeza;
     public NodoLCD Cola;
+
     public LCD() {
         this.Cabeza = null;
         this.Cola = null;
     }
+
     //**********************************************************************GET******************************
     public NodoLCD getCabeza() {
         return Cabeza;
     }
+
     public NodoLCD getCola() {
         return Cola;
     }
+
     //**********************************************************************SET******************************
     public void setCabeza(NodoLCD Cabeza) {
         this.Cabeza = Cabeza;
     }
+
     public void setCola(NodoLCD Cola) {
         this.Cola = Cola;
     }
+
     //************************************************************************METODOS*********************
     public void InsertarInicio(String DPI, String Nombres, String Apellidos, String Licencia, String Genero, String fecha, String Telefono, String Direccion) {
         NodoLCD nuevo = new NodoLCD(Long.parseLong(DPI), Nombres, Apellidos, Licencia, Genero, fecha, Telefono, Direccion);
@@ -50,6 +56,7 @@ public class LCD {
         }
         Cabeza = nuevo;
     }
+
     public void InsertarFin(String DPI, String Nombres, String Apellidos, String Licencia, String Genero, String fecha, String Telefono, String Direccion) {
         NodoLCD nuevo = new NodoLCD(Long.parseLong(DPI), Nombres, Apellidos, Licencia, Genero, fecha, Telefono, Direccion);
         if (Cabeza == null) {
@@ -64,6 +71,7 @@ public class LCD {
         }
         Cola = nuevo;
     }
+
     public NodoLCD BuscarNodo(String DPI) {
         if (Cabeza != null) {
             NodoLCD aux = Cabeza;
@@ -83,16 +91,24 @@ public class LCD {
             return null;
         }
     }
+
     public void EliminarNodo(String DPI) {
-        NodoLCD aux = BuscarNodo(DPI);
-        aux.Siguiente.Anterior = aux.Anterior;
-        aux.Anterior.Siguiente = aux.Siguiente;
-        if (aux == Cabeza) {
-            Cabeza = aux.Siguiente;
-        } else if (aux == Cola) {
-            Cola = aux.Anterior;
+        if (Cabeza != null) {
+            if (Cabeza == Cola) {
+                Cabeza = Cola = null;
+            } else {
+                NodoLCD aux = BuscarNodo(DPI);
+                aux.Siguiente.Anterior = aux.Anterior;
+                aux.Anterior.Siguiente = aux.Siguiente;
+                if (aux == Cabeza) {
+                    Cabeza = aux.Siguiente;
+                } else if (aux == Cola) {
+                    Cola = aux.Anterior;
+                }
+            }
         }
     }
+
     public void RecorrerLCD() {
         NodoLCD aux = Cabeza;
         if (aux != null) {
@@ -104,6 +120,7 @@ public class LCD {
             System.out.println("DPI: " + aux.DPI + " Nombres: " + aux.Nombres + " Apellidos: " + aux.Apellidos + " Tipo Licencia: " + aux.TipoLicencia + " Genero: " + aux.Genero + " Fecha Nacimiento: " + aux.FechaNac + " Telefono: " + aux.Telefono + " Direccion; " + aux.Direccion);
         }
     }
+
     public void InsertarOrden(String DPI, String Nombres, String Apellidos, String Licencia, String Genero, String fecha, String Telefono, String Direccion) {
         NodoLCD nuevo = new NodoLCD(Long.parseLong(DPI), Nombres, Apellidos, Licencia, Genero, fecha, Telefono, Direccion);
         //*************************LISTA VACIA
@@ -137,6 +154,7 @@ public class LCD {
         Cabeza.Anterior = Cola;
         Cola.Siguiente = Cabeza;
     }
+
     public void CargaMasiva() {
         File documento;
         String direccion;
@@ -164,25 +182,26 @@ public class LCD {
         matriz1 = new String[carga.length][8];
         for (int i = 0; i < carga.length; i++) {
             matriz1[i] = carga[i].split("%");
-            if(BuscarNodo(matriz1[i][0]) == null){
+            if (BuscarNodo(matriz1[i][0]) == null) {
                 InsertarOrden(matriz1[i][0], matriz1[i][1], matriz1[i][2], matriz1[i][3], matriz1[i][4], matriz1[i][5], matriz1[i][6], matriz1[i][7]);
-            }else{
+            } else {
                 System.out.println("El conductor ya existe");
             }
         }
         JOptionPane.showMessageDialog(null, "Carga Completa");
     }
+
     public void ReporteGraphviz() {
-        if (Cabeza != null) {
-            NodoLCD anterior = Cabeza;
-            NodoLCD siguiente = null;
-            String contenido = "";
-            String ranks = "{rank=same;";
-            FileWriter documento = null;
-            PrintWriter crear;
-            String archivo = "Conductores.dot";
-            String direccion = "Conductores.png";
-            //****************************************************************************************************CONTENIDO ARCHIVO
+        NodoLCD anterior = Cabeza;
+        NodoLCD siguiente = null;
+        String contenido = "";
+        String ranks = "{rank=same;";
+        FileWriter documento = null;
+        PrintWriter crear;
+        String archivo = "Conductores.dot";
+        String direccion = "Conductores.png";
+        //****************************************************************************************************CONTENIDO ARCHIVO
+        if (anterior != null) {
             while (anterior != Cola) {
                 ranks += "\"" + anterior.DPI + "(" + anterior.Nombres + ")" + "\"" + ";";
                 siguiente = anterior.Siguiente;
@@ -197,21 +216,23 @@ public class LCD {
                 contenido += "\"" + Cabeza.DPI + "(" + Cabeza.Nombres + ")" + "\"" + "->" + "\"" + Cola.DPI + "(" + Cola.Nombres + ")" + "\"" + ";\n" + "\"" + Cola.DPI + "(" + Cola.Nombres + ")" + "\"" + "->" + "\"" + Cabeza.DPI + "(" + Cabeza.Nombres + ")" + "\"" + ";\n";
             }
             contenido += ranks + "};\n";
-            //****************************************************************************************************FIN CONTENIDO ARCHIVO
-            String comando = "digraph D {\n"+"rankdir=LR\n"+"node [fontname=\"Arial\"];\n"+"\n"+contenido+"\n}";
-            try {
-                documento = new FileWriter(archivo);
-                crear = new PrintWriter(documento);
-                crear.print(comando);
-                crear.close();
-            } catch (Exception e) {
-                System.out.println("Error");
-            }
-            try {
-                Runtime.getRuntime().exec("dot -Tpng " + archivo + " -o " + direccion);
-            } catch (Exception e) {
-                System.err.println("");
-            }
+        } else {
+            contenido += "NULL\n";
+        }
+        //****************************************************************************************************FIN CONTENIDO ARCHIVO
+        String comando = "digraph D {\n" + "node [fontname=\"Arial\"];\n" + "\n" + contenido + "\n}";
+        try {
+            documento = new FileWriter(archivo);
+            crear = new PrintWriter(documento);
+            crear.print(comando);
+            crear.close();
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+        try {
+            Runtime.getRuntime().exec("dot -Tpng " + archivo + " -o " + direccion);
+        } catch (Exception e) {
+            System.err.println("");
         }
     }
 }

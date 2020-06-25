@@ -4,10 +4,12 @@ public class NodoVertice {
     public String Nombre;
     public ListaArista Aristas;
     public NodoVertice Abajo;
+    public int matriz;
     public NodoVertice(String nombre){
         Nombre = nombre;
         Abajo = null;
         Aristas = new ListaArista();
+        matriz = -1;
     }
     //************************************************GET*******************************************************
     public String getNombre() {

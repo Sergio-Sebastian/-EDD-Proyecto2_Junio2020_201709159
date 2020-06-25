@@ -11,6 +11,12 @@ public class NodoArista {
         Destino = destino;
         Tiempo = tiempo;
     }
+    public NodoArista(String nombre, int tiempo){
+        Siguiente = null;
+        Origen = "";
+        Destino = nombre;
+        Tiempo = tiempo;
+    }
     //****************************************************METODOS GET**************************************
     public NodoArista getSiguiente() {
         return Siguiente;

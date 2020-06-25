@@ -87,4 +87,13 @@ public class NodoLCD {
     public void setDireccion(String Direccion) {
         this.Direccion = Direccion;
     }  
+    public void setDatos(NodoLCD nuevo){
+       this.Nombres = nuevo.Nombres;
+       this.Apellidos = nuevo.Apellidos;
+       this.TipoLicencia = nuevo.TipoLicencia;
+       this.Genero = nuevo.Genero;
+       this.FechaNac = nuevo.FechaNac;
+       this.Telefono = nuevo.Telefono;
+       this.Direccion = nuevo.Direccion;
+    }
 }
