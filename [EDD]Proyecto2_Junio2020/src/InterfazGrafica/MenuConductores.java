@@ -36,8 +36,7 @@ public class MenuConductores extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        modcondtxt = new javax.swing.JTextField();
-        elimcondtxt = new javax.swing.JTextField();
+        condtxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +64,11 @@ public class MenuConductores extends javax.swing.JFrame {
         });
 
         jButton4.setText("Agregar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Modificar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -80,9 +84,9 @@ public class MenuConductores extends javax.swing.JFrame {
             }
         });
 
-        modcondtxt.addActionListener(new java.awt.event.ActionListener() {
+        condtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modcondtxtActionPerformed(evt);
+                condtxtActionPerformed(evt);
             }
         });
 
@@ -92,7 +96,7 @@ public class MenuConductores extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(ImagenConductores, javax.swing.GroupLayout.DEFAULT_SIZE, 1059, Short.MAX_VALUE)
+                .addComponent(ImagenConductores, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -101,8 +105,7 @@ public class MenuConductores extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(modcondtxt)
-                    .addComponent(elimcondtxt))
+                    .addComponent(condtxt))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -116,14 +119,12 @@ public class MenuConductores extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)
                         .addGap(5, 5, 5)
-                        .addComponent(modcondtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(condtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5)
-                        .addGap(4, 4, 4)
-                        .addComponent(elimcondtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 345, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)))
@@ -153,34 +154,40 @@ public class MenuConductores extends javax.swing.JFrame {
         ImagenConductores.setIcon(imagen);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void modcondtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modcondtxtActionPerformed
+    private void condtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_condtxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_modcondtxtActionPerformed
+    }//GEN-LAST:event_condtxtActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        NodoLCD conductor = Main.Objetos.Conductores.BuscarNodo(elimcondtxt.getText());
+        NodoLCD conductor = Main.Objetos.Conductores.BuscarNodo(condtxt.getText());
         if(conductor != null){
-            Main.Objetos.Conductores.EliminarNodo(elimcondtxt.getText());
+            Main.Objetos.Conductores.EliminarNodo(condtxt.getText());
             Main.Objetos.Conductores.ReporteGraphviz();
             ImageIcon imagen = new ImageIcon(new ImageIcon("Conductores.png").getImage().getScaledInstance(ImagenConductores.getWidth(), ImagenConductores.getHeight(), Image.SCALE_DEFAULT));
             ImagenConductores.setText("");
             ImagenConductores.setIcon(imagen);
-            elimcondtxt.setText("");
+            condtxt.setText("");
         }else{
             JOptionPane.showMessageDialog(null, "No existe conductor");
-            elimcondtxt.setText("");
+            condtxt.setText("");
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        NodoLCD conductor = Main.Objetos.Conductores.BuscarNodo(modcondtxt.getText());
+        NodoLCD conductor = Main.Objetos.Conductores.BuscarNodo(condtxt.getText());
         if(conductor != null){
-            ModificarConductor menu = new ModificarConductor();
+            dispose();
+            ModificarConductor menu = new ModificarConductor(condtxt.getText());
         }else{
             JOptionPane.showMessageDialog(null, "No existe conductor");
-            modcondtxt.setText("");
+            condtxt.setText("");
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        AgregarConductor menu = new AgregarConductor();
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,13 +226,12 @@ public class MenuConductores extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ImagenConductores;
-    private javax.swing.JTextField elimcondtxt;
+    private javax.swing.JTextField condtxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JTextField modcondtxt;
     // End of variables declaration//GEN-END:variables
 }

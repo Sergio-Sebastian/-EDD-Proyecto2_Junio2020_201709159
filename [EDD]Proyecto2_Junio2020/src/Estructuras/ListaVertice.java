@@ -166,7 +166,12 @@ public class ListaVertice {
         matriz1 = new String[carga.length][3];
         for (int i = 0; i < carga.length; i++) {
             matriz1[i] = carga[i].split("/");
-            Insertar(matriz1[i][0], matriz1[i][1], Integer.parseInt(matriz1[i][2]));
+            if(matriz1[i][0].equals(" ")){
+                
+            }else{
+                 Insertar(matriz1[i][0], matriz1[i][1], Integer.parseInt(matriz1[i][2]));
+            }
+           
         }
         JOptionPane.showMessageDialog(null, "Carga Completa");
         return true;

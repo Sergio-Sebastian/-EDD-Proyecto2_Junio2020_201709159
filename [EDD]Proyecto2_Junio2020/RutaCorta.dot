@@ -1,9 +1,11 @@
 digraph D {
 node[shape=rectangle]
 
-"Oviedo(0)"->"Bilbao(304)";
-"Bilbao(304)"->"Madrid(699)";
-"Madrid(699)"
-{rank=same;"Oviedo(0)""Bilbao(304)""Madrid(699)"}
+"Gerona(0)"->"Barcelona(100)";
+"Barcelona(100)"->"Zaragoza(396)";
+"Zaragoza(396)"->"Bilbao(720)";
+"Bilbao(720)"->"Valladolid(1000)";
+"Valladolid(1000)"
+{rank=same;"Gerona(0)""Barcelona(100)""Zaragoza(396)""Bilbao(720)""Valladolid(1000)"}
 
 }

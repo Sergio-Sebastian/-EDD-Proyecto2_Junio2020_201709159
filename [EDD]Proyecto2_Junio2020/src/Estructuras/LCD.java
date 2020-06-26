@@ -123,8 +123,11 @@ public class LCD {
 
     public void InsertarOrden(String DPI, String Nombres, String Apellidos, String Licencia, String Genero, String fecha, String Telefono, String Direccion) {
         NodoLCD nuevo = new NodoLCD(Long.parseLong(DPI), Nombres, Apellidos, Licencia, Genero, fecha, Telefono, Direccion);
-        //*************************LISTA VACIA
-        if (Cabeza == null) {
+        NodoLCD existe = BuscarNodo(DPI);
+        if(existe != null){
+            JOptionPane.showMessageDialog(null, "El DPI de conductor ya existe!");
+        }else{
+            if (Cabeza == null) {
             nuevo.Siguiente = nuevo;
             nuevo.Anterior = nuevo;
             Cola = nuevo;
@@ -153,6 +156,7 @@ public class LCD {
         }
         Cabeza.Anterior = Cola;
         Cola.Siguiente = Cabeza;
+        }
     }
 
     public void CargaMasiva() {
