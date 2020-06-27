@@ -7,6 +7,10 @@ digraph G {
 "Granada"->"Murcia"[label=278];
 "Jaen"->"Sevilla"[label=242];
 "Jaen"->"Madrid"[label=335];
+"Zaragoza"->"Disneyland"[label=10000];
+"Zaragoza"->"Barcelona"[label=296];
+"Zaragoza"->"Madrid"[label=325];
+"Zaragoza"->"Bilbao"[label=324];
 "Murcia"->"Granada"[label=278];
 "Murcia"->"Valencia"[label=241];
 "Murcia"->"Albacete"[label=150];
@@ -26,14 +30,12 @@ digraph G {
 "Barcelona"->"Gerona"[label=100];
 "Barcelona"->"Zaragoza"[label=296];
 "Gerona"->"Barcelona"[label=100];
-"Zaragoza"->"Barcelona"[label=296];
-"Zaragoza"->"Madrid"[label=325];
-"Zaragoza"->"Bilbao"[label=324];
 "Badajoz"->"Madrid"[label=403];
 "Valladolid"->"Madrid"[label=193];
 "Valladolid"->"Vigo"[label=356];
 "Valladolid"->"Coruna"[label=455];
 "Valladolid"->"Bilbao"[label=280];
+"Valladolid"->"Coruña"[label=455];
 "Vigo"->"Valladolid"[label=356];
 "Vigo"->"Coruna"[label=171];
 "Coruna"->"Valladolid"[label=455];
@@ -43,5 +45,6 @@ digraph G {
 "Bilbao"->"Zaragoza"[label=324];
 "Bilbao"->"Oviedo"[label=304];
 "Oviedo"->"Bilbao"[label=304];
+"Coruña"->"Vigo"[label=171];
 
 }

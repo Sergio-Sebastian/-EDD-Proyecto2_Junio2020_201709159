@@ -20,6 +20,7 @@ public class AgregarConductor extends javax.swing.JFrame {
     public AgregarConductor() {
         initComponents();
         setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     /**

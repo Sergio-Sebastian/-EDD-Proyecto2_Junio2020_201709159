@@ -34,6 +34,7 @@ public class ModificarConductor extends javax.swing.JFrame {
     public ModificarConductor() {
         initComponents();
         setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     /**

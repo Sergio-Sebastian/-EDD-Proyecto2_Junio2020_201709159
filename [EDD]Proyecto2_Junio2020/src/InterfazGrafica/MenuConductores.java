@@ -4,6 +4,9 @@ import Estructuras.LCD;
 import Estructuras.NodoLCD;
 import Main.*;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -15,9 +18,15 @@ public class MenuConductores extends javax.swing.JFrame {
     public MenuConductores() {
         initComponents();
         setVisible(true);
-        ImageIcon imagen = new ImageIcon(new ImageIcon("Conductores.png").getImage().getScaledInstance(ImagenConductores.getWidth(), ImagenConductores.getHeight(), Image.SCALE_DEFAULT));
-        ImagenConductores.setText("");
-        ImagenConductores.setIcon(imagen);
+        setLocationRelativeTo(null);
+        try {
+            String urlImagen="Conductores.png";
+            ImageIcon icon = new ImageIcon(ImageIO.read(new File(urlImagen)));
+            icon.getImage().flush();
+            lbImg.setIcon(icon);
+        } catch (IOException e) {
+            System.out.println("EXCEPTION");
+        }
     }
 
     /**
@@ -30,13 +39,14 @@ public class MenuConductores extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        ImagenConductores = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         condtxt = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lbImg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,8 +56,6 @@ public class MenuConductores extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        ImagenConductores.setText("ImagenConductores");
 
         jButton2.setText("Carga Masiva");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -90,45 +98,44 @@ public class MenuConductores extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setViewportView(lbImg);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(ImagenConductores, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(condtxt))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(condtxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ImagenConductores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addGap(5, 5, 5)
-                        .addComponent(condtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 345, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(condtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
                 .addContainerGap())
+            .addComponent(jScrollPane1)
         );
 
         pack();
@@ -142,16 +149,26 @@ public class MenuConductores extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Main.Objetos.Conductores.CargaMasiva();
         Main.Objetos.Conductores.ReporteGraphviz();
-        ImageIcon imagen = new ImageIcon(new ImageIcon("Conductores.png").getImage().getScaledInstance(ImagenConductores.getWidth(), ImagenConductores.getHeight(), Image.SCALE_DEFAULT));
-        ImagenConductores.setText("");
-        ImagenConductores.setIcon(imagen);
+        try {
+            String urlImagen="Conductores.png";
+            ImageIcon icon = new ImageIcon(ImageIO.read(new File(urlImagen)));
+            icon.getImage().flush();
+            lbImg.setIcon(icon);
+        } catch (IOException e) {
+            System.out.println("EXCEPTION");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Main.Objetos.Conductores.ReporteGraphviz();
-        ImageIcon imagen = new ImageIcon(new ImageIcon("Conductores.png").getImage().getScaledInstance(ImagenConductores.getWidth(), ImagenConductores.getHeight(), Image.SCALE_DEFAULT));
-        ImagenConductores.setText("");
-        ImagenConductores.setIcon(imagen);
+        try {
+            String urlImagen="Conductores.png";
+            ImageIcon icon = new ImageIcon(ImageIO.read(new File(urlImagen)));
+            icon.getImage().flush();
+            lbImg.setIcon(icon);
+        } catch (IOException e) {
+            System.out.println("EXCEPTION");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void condtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_condtxtActionPerformed
@@ -163,9 +180,14 @@ public class MenuConductores extends javax.swing.JFrame {
         if(conductor != null){
             Main.Objetos.Conductores.EliminarNodo(condtxt.getText());
             Main.Objetos.Conductores.ReporteGraphviz();
-            ImageIcon imagen = new ImageIcon(new ImageIcon("Conductores.png").getImage().getScaledInstance(ImagenConductores.getWidth(), ImagenConductores.getHeight(), Image.SCALE_DEFAULT));
-            ImagenConductores.setText("");
-            ImagenConductores.setIcon(imagen);
+            try {
+                String urlImagen="Conductores.png";
+                ImageIcon icon = new ImageIcon(ImageIO.read(new File(urlImagen)));
+                icon.getImage().flush();
+                lbImg.setIcon(icon);
+            } catch (IOException e) {
+                System.out.println("EXCEPTION");
+            }
             condtxt.setText("");
         }else{
             JOptionPane.showMessageDialog(null, "No existe conductor");
@@ -225,7 +247,6 @@ public class MenuConductores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ImagenConductores;
     private javax.swing.JTextField condtxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -233,5 +254,7 @@ public class MenuConductores extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbImg;
     // End of variables declaration//GEN-END:variables
 }

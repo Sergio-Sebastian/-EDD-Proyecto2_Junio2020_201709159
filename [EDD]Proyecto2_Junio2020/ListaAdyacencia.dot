@@ -11,7 +11,11 @@ nodesep=0;
 "Sevilla(256)"->"Murcia(278)";
 "Granada"->"Jaen"[style=invis];"Jaen"->"Sevilla(242)";
 "Sevilla(242)"->"Madrid(335)";
-"Jaen"->"Murcia"[style=invis];"Murcia"->"Granada(278)";
+"Jaen"->"Zaragoza"[style=invis];"Zaragoza"->"Disneyland(10000)";
+"Disneyland(10000)"->"Barcelona(296)";
+"Barcelona(296)"->"Madrid(325)";
+"Madrid(325)"->"Bilbao(324)";
+"Zaragoza"->"Disneyland"[style=invis];"Disneyland"->"Murcia"[style=invis];"Murcia"->"Granada(278)";
 "Granada(278)"->"Valencia(241)";
 "Valencia(241)"->"Albacete(150)";
 "Murcia"->"Madrid"[style=invis];"Madrid"->"Jaen(335)";
@@ -30,14 +34,12 @@ nodesep=0;
 "Valencia(349)"->"Gerona(100)";
 "Gerona(100)"->"Zaragoza(296)";
 "Barcelona"->"Gerona"[style=invis];"Gerona"->"Barcelona(100)";
-"Gerona"->"Zaragoza"[style=invis];"Zaragoza"->"Barcelona(296)";
-"Barcelona(296)"->"Madrid(325)";
-"Madrid(325)"->"Bilbao(324)";
-"Zaragoza"->"Badajoz"[style=invis];"Badajoz"->"Madrid(403)";
+"Gerona"->"Badajoz"[style=invis];"Badajoz"->"Madrid(403)";
 "Badajoz"->"Valladolid"[style=invis];"Valladolid"->"Madrid(193)";
 "Madrid(193)"->"Vigo(356)";
 "Vigo(356)"->"Coruna(455)";
 "Coruna(455)"->"Bilbao(280)";
+"Bilbao(280)"->"Coruña(455)";
 "Valladolid"->"Vigo"[style=invis];"Vigo"->"Valladolid(356)";
 "Valladolid(356)"->"Coruna(171)";
 "Vigo"->"Coruna"[style=invis];"Coruna"->"Valladolid(455)";
@@ -47,6 +49,7 @@ nodesep=0;
 "Madrid(395)"->"Zaragoza(324)";
 "Zaragoza(324)"->"Oviedo(304)";
 "Bilbao"->"Oviedo"[style=invis];"Oviedo"->"Bilbao(304)";
-{rank=same;"Cadiz";"Sevilla";"Sevilla";"Granada";"Granada";"Jaen";"Jaen";"Murcia";"Murcia";"Madrid";"Madrid";"Valencia";"Valencia";"Albacete";"Albacete";"Barcelona";"Barcelona";"Gerona";"Gerona";"Zaragoza";"Zaragoza";"Badajoz";"Badajoz";"Valladolid";"Valladolid";"Vigo";"Vigo";"Coruna";"Coruna";"Bilbao";"Bilbao";"Oviedo";"Oviedo";}
+"Oviedo"->"Coruña"[style=invis];"Coruña"->"Vigo(171)";
+{rank=same;"Cadiz";"Sevilla";"Sevilla";"Granada";"Granada";"Jaen";"Jaen";"Zaragoza";"Zaragoza";"Disneyland";"Murcia";"Murcia";"Madrid";"Madrid";"Valencia";"Valencia";"Albacete";"Albacete";"Barcelona";"Barcelona";"Gerona";"Gerona";"Badajoz";"Badajoz";"Valladolid";"Valladolid";"Vigo";"Vigo";"Coruna";"Coruna";"Bilbao";"Bilbao";"Oviedo";"Oviedo";"Coruña";"Coruña";}
 
 }

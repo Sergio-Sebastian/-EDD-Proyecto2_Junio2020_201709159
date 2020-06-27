@@ -224,7 +224,7 @@ public class LCD {
             contenido += "NULL\n";
         }
         //****************************************************************************************************FIN CONTENIDO ARCHIVO
-        String comando = "digraph D {\n" + "node [fontname=\"Arial\"];\n" + "\n" + contenido + "\n}";
+        String comando = "digraph D {\n" + "rankdir=LR;\n node [fontname=\"Arial\"];\n" + "\n" + contenido + "\n}";
         try {
             documento = new FileWriter(archivo);
             crear = new PrintWriter(documento);
