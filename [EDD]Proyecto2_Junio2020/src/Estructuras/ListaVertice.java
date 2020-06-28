@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -352,5 +353,15 @@ public class ListaVertice {
             }
         }
          return lista;
+    }
+    public JComboBox LlenarComboBox(JComboBox combo){
+        NodoVertice aux = Cabeza;
+        if(aux != null){
+            while(aux != null){
+                combo.addItem(aux.Nombre);
+                aux = aux.Abajo;
+            }
+        }
+        return combo;
     }
 }

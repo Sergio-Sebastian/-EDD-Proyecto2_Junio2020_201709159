@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -238,5 +239,19 @@ public class LCD {
         } catch (Exception e) {
             System.err.println("");
         }
+    }
+    
+    public JComboBox LlenarComboBox(JComboBox combo){
+        NodoLCD aux = Cabeza;
+        if(aux != null){
+            while(aux != null && aux != Cola){
+                combo.addItem(aux.DPI);
+                aux = aux.Siguiente;
+            }
+        }
+        if(aux == Cola){
+            combo.addItem(aux.DPI);
+        }
+        return combo;
     }
 }

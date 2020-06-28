@@ -6,20 +6,28 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 
 public class NodoBlockChain {
-    public String Llave;
+    public int Llave;
     public String Origen;
     public String Destino;
     public String FechaHora;
-    //public NodoHash Cliente;
+    public NodoClienteLS Cliente;
     public NodoLCD Conductor;
-    //public NodoArbolB Vehiculo;
+    public NodoVehiculoAB Vehiculo;
     public ListaArista Ruta;
-    public NodoBlockChain(String origen, String destino, NodoLCD conductor, ListaVertice vertices){
+    public NodoBlockChain Siguiente;
+    public NodoBlockChain Anterior;
+    public NodoBlockChain(int llave, String origen, String destino, NodoClienteLS cliente, NodoLCD conductor, NodoVehiculoAB vehiculo, ListaVertice vertices){
+        //this.Llave = placa + new SimpleDateFormat("ddMMyyyyHH:mm").format(new java.util.Date());
+        this.Llave = llave;
         this.Origen = origen;
         this.Destino = destino;
         this.FechaHora = new SimpleDateFormat("ddMMyyyyHH:mm").format(new java.util.Date());
+        this.Cliente = cliente;
         this.Conductor = conductor;
+        this.Vehiculo = vehiculo;
         this.Ruta = vertices.CaminoCorto(origen, destino);
+        this.Siguiente = null;
+        this.Anterior = null;
     }
     private String EncriptarMD5(String textoaenc){
         try{
