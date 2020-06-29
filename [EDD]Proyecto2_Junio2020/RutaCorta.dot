@@ -1,8 +1,7 @@
 digraph D {
 node[shape=rectangle]
 
-"Oviedo(0)"->"Bilbao(304)";
-"Bilbao(304)"
-{rank=same;"Oviedo(0)""Bilbao(304)"}
+"Cadiz(0)"
+{rank=same;"Cadiz(0)"}
 
 }

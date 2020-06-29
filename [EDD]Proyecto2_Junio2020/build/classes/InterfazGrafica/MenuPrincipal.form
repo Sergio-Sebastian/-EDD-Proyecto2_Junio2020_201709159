@@ -27,13 +27,17 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="jScrollPane1" pref="851" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton1" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
-                  <Component id="jButton4" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
-                  <Component id="jButton5" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
-                  <Component id="jButton3" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
-                  <Component id="jButton6" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jButton1" alignment="0" pref="169" max="32767" attributes="0"/>
+                  <Component id="jButton4" alignment="0" pref="169" max="32767" attributes="0"/>
+                  <Component id="jButton5" alignment="0" pref="169" max="32767" attributes="0"/>
+                  <Component id="jButton3" alignment="0" pref="169" max="32767" attributes="0"/>
+                  <Component id="jButton6" alignment="0" pref="169" max="32767" attributes="0"/>
+                  <Component id="jButton2" alignment="0" pref="169" max="32767" attributes="0"/>
+                  <Component id="jButton7" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButton8" max="32767" attributes="0"/>
+                  <Component id="jButton9" max="32767" attributes="0"/>
+                  <Component id="jButton10" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -50,7 +54,15 @@
               <Component id="jButton3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton6" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="473" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButton8" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButton9" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButton7" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButton10" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="321" max="32767" attributes="0"/>
               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
@@ -117,5 +129,28 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="jButton7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Top Conductores"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Top Viajes"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Top Clientes"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Top Vehiculos"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

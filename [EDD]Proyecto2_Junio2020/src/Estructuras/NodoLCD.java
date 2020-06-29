@@ -13,6 +13,7 @@ public class NodoLCD {
    public String FechaNac;
    public String Telefono;
    public String Direccion;
+   public int Contador;
    public NodoLCD(Long DPI, String Nombres, String Apellidos, String Licencia, String Genero, String fecha, String Telefono, String Direccion){
        this.Siguiente = null;
        this.Anterior = null;
@@ -24,6 +25,7 @@ public class NodoLCD {
        this.FechaNac = fecha;
        this.Telefono = Telefono;
        this.Direccion = Direccion;
+       this.Contador = 0;
    }
    //********************************************************************GET***********************************************************************
     public NodoLCD getSiguiente() {
@@ -95,5 +97,8 @@ public class NodoLCD {
        this.FechaNac = nuevo.FechaNac;
        this.Telefono = nuevo.Telefono;
        this.Direccion = nuevo.Direccion;
+    }
+    public void setContador(int Contador) {
+        this.Contador += Contador;
     }
 }

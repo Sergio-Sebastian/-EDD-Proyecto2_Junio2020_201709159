@@ -114,35 +114,69 @@ public class LCD {
         NodoLCD aux = Cabeza;
         if (aux != null) {
             while (aux != Cola) {
-                System.out.println("DPI: " + aux.DPI + " Nombres: " + aux.Nombres + " Apellidos: " + aux.Apellidos + " Tipo Licencia: " + aux.TipoLicencia + " Genero: " + aux.Genero + " Fecha Nacimiento: " + aux.FechaNac + " Telefono: " + aux.Telefono + " Direccion; " + aux.Direccion);
+                System.out.println("DPI: " + aux.DPI + " Nombres: " + aux.Nombres + " Apellidos: " + aux.Apellidos + " Tipo Licencia: " + aux.TipoLicencia + " Genero: " + aux.Genero + " Fecha Nacimiento: " + aux.FechaNac + " Telefono: " + aux.Telefono + " Direccion; " + aux.Direccion + " Contador: " + aux.Contador);
                 aux = aux.Siguiente;
             }
             aux = Cola;
-            System.out.println("DPI: " + aux.DPI + " Nombres: " + aux.Nombres + " Apellidos: " + aux.Apellidos + " Tipo Licencia: " + aux.TipoLicencia + " Genero: " + aux.Genero + " Fecha Nacimiento: " + aux.FechaNac + " Telefono: " + aux.Telefono + " Direccion; " + aux.Direccion);
+            System.out.println("DPI: " + aux.DPI + " Nombres: " + aux.Nombres + " Apellidos: " + aux.Apellidos + " Tipo Licencia: " + aux.TipoLicencia + " Genero: " + aux.Genero + " Fecha Nacimiento: " + aux.FechaNac + " Telefono: " + aux.Telefono + " Direccion; " + aux.Direccion + " Contador: " + aux.Contador);
         }
     }
 
     public void InsertarOrden(String DPI, String Nombres, String Apellidos, String Licencia, String Genero, String fecha, String Telefono, String Direccion) {
         NodoLCD nuevo = new NodoLCD(Long.parseLong(DPI), Nombres, Apellidos, Licencia, Genero, fecha, Telefono, Direccion);
         NodoLCD existe = BuscarNodo(DPI);
-        if(existe != null){
+        if (existe != null) {
             JOptionPane.showMessageDialog(null, "El DPI de conductor ya existe!");
-        }else{
+        } else {
             if (Cabeza == null) {
+                nuevo.Siguiente = nuevo;
+                nuevo.Anterior = nuevo;
+                Cola = nuevo;
+                Cabeza = nuevo;
+            } else {
+                NodoLCD inicio = Cabeza;
+                while ((inicio.Siguiente != Cabeza) && (inicio.DPI < nuevo.DPI)) {
+                    inicio = inicio.Siguiente;
+                }
+                if ((inicio.getSiguiente() == Cabeza) && (inicio.DPI < nuevo.DPI)) {
+                    nuevo.setSiguiente(Cabeza);
+                    nuevo.setAnterior(inicio);
+                    inicio.setSiguiente(nuevo);
+                    //inicio.setAnterior(Cola);
+                    Cola = nuevo;
+                } else {
+                    NodoLCD ant = inicio.getAnterior();
+                    nuevo.setAnterior(ant);
+                    ant.setSiguiente(nuevo);
+                    nuevo.setSiguiente(inicio);
+                    inicio.setAnterior(nuevo);
+                    if ((inicio == Cabeza) && (Cabeza.DPI > nuevo.DPI)) {
+                        Cabeza = nuevo;
+                    }
+                }
+            }
+            Cabeza.Anterior = Cola;
+            Cola.Siguiente = Cabeza;
+        }
+    }
+
+    public void InsertarOrdenTop(Long DPI, String Nombres, String Apellidos, String Licencia, String Genero, String fecha, String Telefono, String Direccion, int contador) {
+        NodoLCD nuevo = new NodoLCD(DPI, Nombres, Apellidos, Licencia, Genero, fecha, Telefono, Direccion);
+        nuevo.Contador = contador;
+        if (Cabeza == null) {
             nuevo.Siguiente = nuevo;
             nuevo.Anterior = nuevo;
             Cola = nuevo;
             Cabeza = nuevo;
         } else {
             NodoLCD inicio = Cabeza;
-            while ((inicio.Siguiente != Cabeza) && (inicio.DPI < nuevo.DPI)) {
+            while ((inicio.Siguiente != Cabeza) && (inicio.Contador >= nuevo.Contador)) {
                 inicio = inicio.Siguiente;
             }
-            if ((inicio.getSiguiente() == Cabeza) && (inicio.DPI < nuevo.DPI)) {
+            if ((inicio.getSiguiente() == Cabeza) && (inicio.Contador >= nuevo.Contador)) {
                 nuevo.setSiguiente(Cabeza);
                 nuevo.setAnterior(inicio);
                 inicio.setSiguiente(nuevo);
-                //inicio.setAnterior(Cola);
                 Cola = nuevo;
             } else {
                 NodoLCD ant = inicio.getAnterior();
@@ -150,14 +184,13 @@ public class LCD {
                 ant.setSiguiente(nuevo);
                 nuevo.setSiguiente(inicio);
                 inicio.setAnterior(nuevo);
-                if ((inicio == Cabeza) && (Cabeza.DPI > nuevo.DPI)) {
+                if ((inicio == Cabeza) && (Cabeza.Contador < nuevo.Contador)) {
                     Cabeza = nuevo;
                 }
             }
         }
         Cabeza.Anterior = Cola;
         Cola.Siguiente = Cabeza;
-        }
     }
 
     public void CargaMasiva() {
@@ -240,18 +273,54 @@ public class LCD {
             System.err.println("");
         }
     }
-    
-    public JComboBox LlenarComboBox(JComboBox combo){
+
+    public JComboBox LlenarComboBox(JComboBox combo) {
         NodoLCD aux = Cabeza;
-        if(aux != null){
-            while(aux != null && aux != Cola){
+        if (aux != null) {
+            while (aux != null && aux != Cola) {
                 combo.addItem(aux.DPI);
                 aux = aux.Siguiente;
             }
         }
-        if(aux == Cola){
+        if (aux == Cola) {
             combo.addItem(aux.DPI);
         }
         return combo;
+    }
+
+    public String ObtenerTop() {
+        NodoLCD aux = Cabeza;
+        LCD nuevo = new LCD();
+        String mensaje = "";
+        if (aux != null) {
+            while (aux != Cola) {
+                nuevo.InsertarOrdenTop(aux.DPI, aux.Nombres, aux.Apellidos, aux.TipoLicencia, aux.Genero, aux.FechaNac, aux.Telefono, aux.Direccion, aux.Contador);
+                aux = aux.Siguiente;
+            }
+            if(aux == Cola){
+                nuevo.InsertarOrdenTop(aux.DPI, aux.Nombres, aux.Apellidos, aux.TipoLicencia, aux.Genero, aux.FechaNac, aux.Telefono, aux.Direccion, aux.Contador);
+            }
+            NodoLCD aux2 = nuevo.Cabeza;
+            int cont = 0;
+            while(aux2 != nuevo.Cola){
+                if(cont < 10){
+                    cont++;
+                    mensaje += cont + ". DPI: " + aux2.DPI + " Nombre: " + aux2.Nombres + " Viajes: " + aux2.Contador + "\n";
+                    aux2 = aux2.Siguiente;
+                }else{
+                    break;
+                }
+            }
+            if(aux2 == nuevo.Cola){
+                if(cont < 10){
+                    cont++;
+                    mensaje += cont + ". DPI: " + aux2.DPI + " Nombre: " + aux2.Nombres + " Viajes: " + aux2.Contador + "\n";
+                }
+            }
+            return mensaje;
+        }else{
+            mensaje = "No hay conductores";
+            return mensaje;
+        }
     }
 }

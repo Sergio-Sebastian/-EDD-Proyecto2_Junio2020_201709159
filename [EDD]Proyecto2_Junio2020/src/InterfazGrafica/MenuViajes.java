@@ -30,7 +30,11 @@ public class MenuViajes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         cborigen = Vertices.LlenarComboBox(cborigen);
         cbdestino = Vertices.LlenarComboBox(cbdestino);
+        try{
         cbcond = Conductores.LlenarComboBox(cbcond);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "No hay conductores", "ATENCIÓN", 1);
+        }
         cbllaves.removeAllItems();
         cbllaves = Viajes.LlenarComboBox(cbllaves);
         LlenarTabla();
@@ -267,6 +271,7 @@ public class MenuViajes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Conductores.BuscarNodo(cbcond.getSelectedItem().toString()).setContador(1);
         Viajes.InsertarInicio(cborigen.getSelectedItem().toString(), cbdestino.getSelectedItem().toString(), null, Conductores.BuscarNodo(cbcond.getSelectedItem().toString()), null, Vertices);
         LlenarTabla();
         cbllaves.removeAllItems();
